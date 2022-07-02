@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'app/services/auth.service';
 import { environment } from 'environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -14,16 +14,18 @@ export class AskDetailsComponent implements OnInit {
  
   constructor(public authservice:AuthService,
     public http:HttpClient,
+    private router:Router,
     private activatedRoute:ActivatedRoute,
     private notificationService:NotificationService
     ) { }
     details
-
+id
   ngOnInit(): void {
     debugger;
     this.activatedRoute.params.subscribe(
       params =>  {
         console.log(params)
+        this.id=params.id
         this.http.get(`${environment.apiUrl}AskeHelp/GetById/${params.id}`).subscribe(
           res => {
             this.details=res
@@ -48,5 +50,15 @@ export class AskDetailsComponent implements OnInit {
      
   })
 
+}
+doneHelp() {
+  this.http.put(`${environment.apiUrl}AskeHelp/Accepted/${this.id}/${JSON.parse(localStorage.getItem('user')).Id }`,{}).subscribe(
+    (res:any) => {
+      console.log(res,'delete')
+     this.router.navigate(['/dashboard/accepted'])
+    } , err => {
+      console.log(err)
+    }
+  )
 }
 }

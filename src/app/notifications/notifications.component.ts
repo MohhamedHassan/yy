@@ -81,7 +81,6 @@ export class NotificationsComponent implements OnInit {
     )
   }
   doneHelp(Id) {
-    debugger;
     this.http.put(`${environment.apiUrl}AskeHelp/Accepted/${Id}/${JSON.parse(localStorage.getItem('user')).Id }`,{}).subscribe(
       (res:any) => {
         console.log(res,'delete')
