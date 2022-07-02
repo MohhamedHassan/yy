@@ -1,0 +1,15 @@
+.notView{
+    background-color: darkgray;
+    color:white;
+}
+.view{
+    background-color: white;
+    color:black;
+}
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 80vh;
+    overflow-y: scroll;
+}

@@ -1,0 +1,20 @@
+<div class=" d-flex justify-content-center py-5" style="min-height: 100vh;">
+                
+ <div>
+    <div class="row">
+        <div class="col">
+          <app-profile-picture [(url)]=picurl [editmode]=editEnabled></app-profile-picture>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <div class="form-group">
+              <label for="cbeditmode">Edit mode</label>
+              <input #cbeditmode id="cbeditmode" [checked]="editEnabled" (change)="editEnabled=cbeditmode.checked" type="checkbox">
+          </div>
+          <button class="btn btn-primary d-block mb-3" (click)="clear()">Clear</button>
+          <button class="btn btn-primary d-block mb-3" (click)=" updateProfilePicture()">Save</button>
+        </div>
+      </div>
+ </div>
+   </div>

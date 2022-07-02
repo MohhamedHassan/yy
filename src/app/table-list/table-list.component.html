@@ -1,0 +1,475 @@
+<div class="main-content">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div #el class="col-md-12">
+                <div
+                [ngStyle]="{
+                  background:authService.dark ? '#494949' : 'white',
+                  color:authService.dark ? 'white' : 'black'
+                }"
+                class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Ask For Help </h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="">
+                            <form [formGroup]="askHelpForm"
+                            (ngSubmit)="askHelp(askHelpForm.value)"
+                            >
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                  <div class="form-group">
+                                      <label for="">Type Of Service</label>
+                                      <select
+                                      #select
+                                      (change)="onselectchange(select.value)"
+                                      style="-webkit-appearance: button;
+                                      width: 100%; padding: 10px;"
+                                      class="form-control mb-3">
+                                          <option value="">Type Of Service</option>
+                                          <option value="Help Me">Help Me</option>
+                                          <option value="Delivery">Delivery</option>
+                                          <option value="Home">Home</option>
+                                          <option value="Nursing"> Nursing</option>
+                                          <option value="Elderly"> Elderly</option>
+                                          <option value="WASALNY"> WASALNY</option>
+                                          <option value="Disabled Assistant">Disabled Assistant</option>
+                                          <option value="other">other</option>
+                                      </select>
+                                      <p 
+                                      *ngIf="points!=0"
+                                      class="my-3">
+                                          {{points}} Points
+                                      </p>
+                                  </div>
+                               <ng-container *ngIf="showOther">
+                                  <div class="form-group">
+                                      <input 
+                                      #typeofservicee
+                                      (blur)="blureTypeofservice(typeofservicee)"
+                                      type="text" class="form-control mb-3" placeholder="type of service">
+                                  </div>
+                               </ng-container>
+                                        <div class="form-group">
+                                            <label for="">Describtion</label>
+                                          <textarea 
+                                          formControlName="Describtion"
+                                          class="form-control mb-3" placeholder="Description" name="" id=""  rows="1"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                          <label>Phone</label>
+                                          <input 
+                                          formControlName="Phone"
+                                          type="text"  class="form-control mb-3">
+                                      </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    
+                              <div class="form-group">
+                                  <label>Date</label>
+                                  <input 
+                                  formControlName="Date"
+                                  type="date"  class="form-control mb-3">
+                              </div>
+                         
+                              <div class="form-group">
+                                  <label>Time</label>
+                                  <input 
+                                  formControlName="Time"
+                                  type="time"  class="form-control mb-3">
+                              </div>
+                       
+                 
+                           
+                              <div class="form-group">
+                                  <label for="">Price</label>
+                                         <select
+                                  #paid
+                                  (change)="onPaid(paid.value)"
+                                  style="-webkit-appearance: button;
+                                  width: 100%; padding: 10px;"
+                                  class="form-control mb-3">
+                                      <option value="free">Free</option>
+                                      <option value="paid">Paid</option>
+                                  </select>
+                                 <ng-container *ngIf="showPrice">
+                                  <input 
+                                  #prc
+                                  (blur)="blurePrice(prc)"
+                                  type="number" placeholder="Price" class="form-control mb-3">
+                                 </ng-container>
+                                 
+                              </div>
+                              </div>
+                              <div class="col-12">
+                                <select
+                                
+                                #onelocationn 
+                                (change)="ss(onelocationn.value)"
+                                style="-webkit-appearance: button;
+                                width: 100%; padding: 10px;"
+                                class="form-control mb-3">
+                                    <option style="font-weight: bold;" value="">Select Location</option>
+                                    <option value="one">Add Current Location</option>
+                                </select>
+                              </div>
+                     
+                              <div 
+                              *ngIf="onelocation"
+                              class="col-12">
+                                  <div>
+                                      <h2>Current Location</h2>
+                                    <agm-map 
+                                    [latitude]="latitude" [longitude]="longitude" 
+                                   >
+                                        <agm-marker 
+                                        *ngIf="cond"
+                                        [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                                      </agm-map>
+                                  </div>
+                              </div>
+                            </div>
+                       
+                       
+                              <div class="text-center">
+                                  <button class="btn btn-primary w-50">Send</button>
+                              </div>
+                            </form>
+                            <!-- <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Country
+                                    </th>
+                                    <th>
+                                        City
+                                    </th>
+                                    <th>
+                                        Salary
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td class="text-primary">
+                                            $36,738
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            Minerva Hooper
+                                        </td>
+                                        <td>
+                                            Curaçao
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td class="text-primary">
+                                            $23,789
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>
+                                            Sage Rodriguez
+                                        </td>
+                                        <td>
+                                            Netherlands
+                                        </td>
+                                        <td>
+                                            Baileux
+                                        </td>
+                                        <td class="text-primary">
+                                            $56,142
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>
+                                            Philip Chaney
+                                        </td>
+                                        <td>
+                                            Korea, South
+                                        </td>
+                                        <td>
+                                            Overland Park
+                                        </td>
+                                        <td class="text-primary">
+                                            $38,735
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            5
+                                        </td>
+                                        <td>
+                                            Doris Greene
+                                        </td>
+                                        <td>
+                                            Malawi
+                                        </td>
+                                        <td>
+                                            Feldkirchen in Kärnten
+                                        </td>
+                                        <td class="text-primary">
+                                            $63,542
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            6
+                                        </td>
+                                        <td>
+                                            Mason Porter
+                                        </td>
+                                        <td>
+                                            Chile
+                                        </td>
+                                        <td>
+                                            Gloucester
+                                        </td>
+                                        <td class="text-primary">
+                                            $78,615
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                        </div>
+                    </div>
+                </div>
+                <table class="table mt-5">
+                  <thead>
+                    <tr>
+                      <th>Type of service</th>
+                 
+                      <th >Date</th>
+                      <th>Phone</th>
+                      <th>Time</th>
+                      <th >Price</th> 
+                      <th >Description</th>
+                      <th>Location</th>     
+                      <th>Delete</th>
+                      <th>Update</th>
+                    </tr>
+                  </thead>
+                  <tbody style="color: gray !important;">
+                    <tr *ngFor="let item of askHelpp">
+                        <ng-template #template>
+                            <div class="modal-header">
+                              <h4 class="modal-title pull-left">Location</h4>
+                              <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                                <span aria-hidden="true" class="visually-hidden">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <h2>{{item?.Location}}</h2>
+                                <agm-map 
+                                [latitude]="one" [longitude]="two" >
+                                    <agm-marker 
+                                    *ngIf="true"
+                                    [latitude]="one" [longitude]="two"></agm-marker>
+                                  </agm-map>
+                            </div>
+                          </ng-template>
+                      <td>{{item?.TypeOfServes}}</td>
+                
+                      <ng-template #destemplate>
+                        <div class="modal-header">
+                          <h4 class="modal-title pull-left">Description</h4>
+                          <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+                            <span aria-hidden="true" class="visually-hidden">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            {{item?.Describtion}}
+                        </div>
+                      </ng-template>
+                      <td>{{item?.Date}}</td>
+                      <td>{{item?.Phone}}</td>
+                      <td>{{item?.Time}}</td>
+                      <td>{{item?.Price}}</td>
+                      <td>     <button 
+                        (click)="openModal(destemplate)"
+                        class="btn btn-primary">Describtion</button></td>
+                     <td>
+                        <button 
+                        (click)="getloc(item?.Latitude,item?.Longitude,template)"
+                        class="btn btn-danger">Get Location</button>
+                     </td>
+                
+                      <td><button 
+                          (click)="deleteHelp(item?.Id)"
+                          class="btn btn-danger">Delete</button></td>
+                      <td>
+                          <button 
+                          (click)="updateHelp(item?.Id,item,el)"
+                          class="btn btn-primary">Update</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>
+            <!-- <div class="col-md-12">
+                <div class="card card-plain">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title mt-0"> Table on Plain Background</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Country
+                                    </th>
+                                    <th>
+                                        City
+                                    </th>
+                                    <th>
+                                        Salary
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            Dakota Rice
+                                        </td>
+                                        <td>
+                                            Niger
+                                        </td>
+                                        <td>
+                                            Oud-Turnhout
+                                        </td>
+                                        <td>
+                                            $36,738
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            Minerva Hooper
+                                        </td>
+                                        <td>
+                                            Curaçao
+                                        </td>
+                                        <td>
+                                            Sinaai-Waas
+                                        </td>
+                                        <td>
+                                            $23,789
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>
+                                            Sage Rodriguez
+                                        </td>
+                                        <td>
+                                            Netherlands
+                                        </td>
+                                        <td>
+                                            Baileux
+                                        </td>
+                                        <td>
+                                            $56,142
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>
+                                            Philip Chaney
+                                        </td>
+                                        <td>
+                                            Korea, South
+                                        </td>
+                                        <td>
+                                            Overland Park
+                                        </td>
+                                        <td>
+                                            $38,735
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            5
+                                        </td>
+                                        <td>
+                                            Doris Greene
+                                        </td>
+                                        <td>
+                                            Malawi
+                                        </td>
+                                        <td>
+                                            Feldkirchen in Kärnten
+                                        </td>
+                                        <td>
+                                            $63,542
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            6
+                                        </td>
+                                        <td>
+                                            Mason Porter
+                                        </td>
+                                        <td>
+                                            Chile
+                                        </td>
+                                        <td>
+                                            Gloucester
+                                        </td>
+                                        <td>
+                                            $78,615
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+  </div>

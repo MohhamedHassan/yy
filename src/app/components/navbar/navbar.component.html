@@ -1,0 +1,164 @@
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-wrapper">
+          <a class="navbar-brand text-gray" href="javascript:void(0)">{{getTitle()}}</a>
+        </div>
+        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <!-- <form class="navbar-form">
+                <div class="input-group no-border">
+                    <input type="text" value="" class="form-control" placeholder="Search...">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </form> -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a 
+                    style="color: #bab6b6;"
+                    class="nav-link" routerLink="/dashboard/dashboard">
+                        <i class="material-icons">home</i>
+                        <p>
+                            <span class="d-lg-none d-md-block">Stats</span>
+                        </p>
+                    </a>
+                </li>
+                <li 
+                *ngIf="authservice.type=='Volunteer'"
+                class="nav-item dropdown">
+                    <a 
+                    style="color: #bab6b6; cursor: pointer;"
+                    class="nav-link"   (click)="openModal(destemplate)" id="navbarDropdownMenuLink"  aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">notifications</i>
+                        <span 
+                        *ngIf="notificationService.notificationCount>0"
+                        class="notification">{{notificationService.notificationCount}}</span>
+                        <p>
+                            <span class="d-lg-none d-md-block">Some Actions</span>
+                        </p>
+                    </a>
+                    <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
+                        <a class="dropdown-item" href="javascript:void(0)">You have 5 new tasks</a>
+                        <a class="dropdown-item" href="javascript:void(0)">You're now friend with Andrew</a>
+                        <a class="dropdown-item" href="javascript:void(0)">Another Notification</a>
+                        <a class="dropdown-item" href="javascript:void(0)">Another One</a>
+                    </div> -->
+                </li>
+                <li class="nav-item">
+                    <a 
+                    style="color: #bab6b6;"
+                    class="nav-link"  routerLink="/dashboard/user-profile">
+                        <i class="material-icons">person</i>
+                        <p>
+                            <span class="d-lg-none d-md-block">Account</span>
+                        </p>
+                    </a>
+               
+                </li>
+                <li class="nav-item">
+                    <a 
+                    (click)="authservice.dark=!authservice.dark"
+                    style="color: #bab6b6;cursor:pointer;"
+                    class="nav-link"  >
+                        <i class="material-icons">wb_sunny</i>
+                        <p>
+                            <span class="d-lg-none d-md-block">Account</span>
+                        </p>
+                    </a>
+               
+                </li>
+                <li class="nav-item">
+                    <a 
+                    (click)="logout()"
+                    style="color: #bab6b6;cursor:pointer;"
+                    class="nav-link"  >
+                        <i class="material-icons">input</i>
+                        <p>
+                            <span class="d-lg-none d-md-block">Account</span>
+                        </p>
+                    </a>
+               
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--
+
+<nav class="navbar navbar-transparent navbar-absolute">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button mat-raised-button type="button" class="navbar-toggle" data-toggle="collapse" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="material-icons">dashboard</i>
+                        <p class="hidden-lg hidden-md">Dashboard</p>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="material-icons">notifications</i>
+                        <span class="notification">5</span>
+                        <p class="hidden-lg hidden-md">Notifications</p>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">Mike John responded to your email</a></li>
+                        <li><a href="javascript:void(0)">You have 5 new tasks</a></li>
+                        <li><a href="javascript:void(0)">You're now friend with Andrew</a></li>
+                        <li><a href="javascript:void(0)">Another Notification</a></li>
+                        <li><a href="javascript:void(0)">Another One</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                       <i class="material-icons">person</i>
+                       <p class="hidden-lg hidden-md">Profile</p>
+                    </a>
+                </li>
+            </ul>
+
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group form-black is-empty">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="material-input"></span>
+                </div>
+                <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i><div class="ripple-container"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav> -->
+<ng-template class="modal-dialog" #destemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Notifications</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div  *ngFor="let item of notificationService.notifications" >
+          <div style="cursor: pointer;" (click)="goToDetails(item)" class="alert alert-secondary " [ngClass]="item.IsView == true && item.VolunteerId == user.Id ?'view' :'notView' ">
+            {{item.NotificationMasseg}}
+          </div>
+        </div>
+      </div>
+  </ng-template>

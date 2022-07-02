@@ -1,0 +1,50 @@
+<section class="container pt-5">
+    <h1 class="text-center">Login</h1>
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+            <img src="assets/circle aw square.png" class="img-fluid" alt="">
+        </div>
+        <div class="col-md-6 mb-4">
+            <form
+            class="row"
+             [formGroup]="loginForm"
+             (ngSubmit)="siginIn(loginForm.value)"
+            >
+              
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input 
+                            formControlName="Email"
+                            type="email"  class="form-control">
+                            <p 
+                            *ngIf="formControls.Email.errors?.required && formControls.Email.touched"
+                            class="text-danger">Email  is required</p>
+                            <p 
+                            *ngIf="formControls.Email.errors?.email && formControls.Email.touched"
+                            class="text-danger">Enter a valid email</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input 
+                            formControlName="Password"
+                            type="password"  class="form-control">
+                            <p 
+                            *ngIf="formControls.Password.errors?.required && formControls.Password.touched"
+                            class="text-danger">Password is required</p>
+                        </div>
+                    </div>
+        
+                    <div class="col-md-12 mb-3">
+                      <button 
+                      [disabled]="loginForm.invalid"
+                      class="btn btn-primary w-100">Login</button>
+                      <a routerLink="/auth">Dont have an account ? Register</a>
+                    </div>
+            </form>
+        </div>
+    </div>
+   
+</section>

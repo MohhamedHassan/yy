@@ -1,0 +1,140 @@
+<section class="container pt-5">
+    <h1 class="text-center mb-5">Register</h1>
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+            <img src="assets/circle aw square.png" class="img-fluid" alt="">
+        </div> 
+        <div class="col-md-6 mb-4">
+            <div class="">
+                
+                <div class="row">
+                  <div class="col">
+                    <app-profile-picture [(url)]=picurl [editmode]=editEnabled></app-profile-picture>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                      <div class="form-group">
+                        <label for="cbeditmode">Edit mode</label>
+                        <input #cbeditmode id="cbeditmode" [checked]="editEnabled" (change)="editEnabled=cbeditmode.checked" type="checkbox">
+                    </div>
+                    <button class="button" (click)="clear()">Clear</button>
+                  </div>
+                </div>
+               </div>
+            <form
+    class="row"
+     [formGroup]="registerForm"
+     (ngSubmit)="signup(registerForm.value)"
+    >
+      
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input 
+                    formControlName="Name"
+                    type="text"  class="form-control">
+                    <p 
+                    *ngIf="formControls.Name.errors?.required && formControls.Name.touched"
+                    class="text-danger">Name is required</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input 
+                    formControlName="Phone"
+                    type="text"  class="form-control">
+                    <p 
+                    *ngIf="formControls.Phone.errors?.required && formControls.Phone.touched"
+                    class="text-danger">Phone Number is required</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input 
+                    formControlName="Email"
+                    type="email"  class="form-control">
+                    <!-- <p 
+                    *ngIf="formControls.Email.errors?.required && formControls.Email.touched"
+                    class="text-danger">Email  is required</p>-->
+                    <p  
+                    *ngIf="formControls.Email.errors!==null && formControls.Email.touched"
+                    class="text-danger">Enter a valid email</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label>Age</label>
+                    <input 
+                    formControlName="Age"
+                    type="number"  class="form-control">
+                    <p 
+                    *ngIf="formControls.Age.errors?.required && formControls.Age.touched"
+                    class="text-danger">Age is required</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="">
+                    <label class="d-block">Gender</label>
+                 <select 
+                 style="-webkit-appearance: button;
+                 width: 100%;padding: 10px;"
+                 formControlName="Gender"
+                 class="">
+                     <option value="" selected>Gender</option>
+                     <option value="male">Male</option>
+                     <option value="female">Female</option>
+                 </select>
+                </div>
+            </div>
+         
+            <div class="col-md-6 mb-3">
+                <div class="">
+                    <label class="d-block">Type</label>
+                 <select 
+                 style="-webkit-appearance: button;
+                 width: 100%; padding: 10px;"
+                 formControlName="Rule"
+                 class="">
+                     <option value="" selected>Type</option>
+                     <option value="2">Disabled</option>
+                     <option value="1">Volunteer</option>
+                 </select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input 
+                    formControlName="Password"
+                    type="password"  class="form-control">
+                    <p 
+                    *ngIf="formControls.Password.errors?.required && formControls.Password.touched"
+                    class="text-danger">Password is required</p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input
+                    formControlName="confirmPassword"
+                    type="password"  class="form-control">
+                    <p 
+                    *ngIf="formControls.Password.value != formControls.confirmPassword.value
+                    && formControls.confirmPassword.touched
+                    "
+                    class="text-danger">Not equal</p>
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
+              <button 
+              [disabled]="registerForm.invalid || formControls.Password.value != formControls.confirmPassword.value"
+              class="btn btn-primary w-100">Register</button>
+              <a routerLink="/login">Have an account ? Sign in</a>
+            </div>
+    </form>
+        </div>
+    </div>
+</section>

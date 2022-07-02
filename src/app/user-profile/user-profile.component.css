@@ -1,0 +1,45 @@
+
+.profile-picture {
+    position: relative;
+    z-index: 1;
+    width: 100px;
+    height:100px;
+    background-image:url(/assets/profile-placeholder.jpeg);
+    background-size: contain;
+    border-radius: 1em;
+  }
+  
+  .profile-picture img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    z-index: 2;
+    border-radius: 1em;
+  }
+  
+  .profile-picture label {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .profile-picture .drag-over .infotext {
+    color: white;
+    border: dashed 5px white;
+  }
+  
+  .profile-picture .infotext {
+    margin-left: 2px;
+    margin-top: 2px;
+    height: 100px;
+    width: 100px;
+    vertical-align: middle;
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    border: dashed 1px rgba(255,255,255,0.8);
+    border-radius: 5px;
+    padding-top: 10px;
+    font-size: 80%;
+  }
+  

@@ -1,0 +1,12 @@
+i.fa-star {
+    color:orange;
+    font-size: 20px;
+}
+table {
+    color:gray !important
+}
+input,textarea {
+    color: gray !important;
+}
+
+agm-map{height:300px}

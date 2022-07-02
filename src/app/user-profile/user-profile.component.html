@@ -1,0 +1,191 @@
+  <div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div 
+                [ngStyle]="{
+                  background:authService.dark ? '#494949' : 'white',
+                  color:authService.dark ? 'white' : 'black'
+                }"
+                class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Edit Profile</h4>
+                        <p class="card-category">Complete your profile</p>
+                    </div>
+                    <div class="card-body">
+                        <form 
+                        [formGroup]="updateProfileForm"
+                        (ngSubmit)="updatee(updateProfileForm.value)"
+                        >
+                            <div class="row">
+                                <!-- <div class="col-md-5">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Company (disabled)" disabled>
+                                    </mat-form-field>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput 
+                                  formControlName="Name"
+                                      placeholder="Username">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput 
+                                    formControlName="Email"
+                                      placeholder="Email address" type="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput 
+                              formControlName="Phone"
+                                    placeholder="Phone" type="text">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput 
+                                formControlName="Gender"
+                                    placeholder="Gender" type="text">
+                                  </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput
+                              formControlName="Age"
+                                    placeholder="Age" type="number">
+                                  </mat-form-field>
+                                  <p 
+                                  *ngIf="updateProfileForm.controls.Age.errors!=null && updateProfileForm.controls.Age.touched"
+                                  class="text-danger">enter a valid age</p>
+                                </div>
+                            </div>
+                            <div 
+                            *ngIf="authService.type=='Volunteer'"
+                            class="mb-3">
+                            <div class="mb-3">
+                              Number Of Points : {{totalPoints}}
+                            </div>
+                  <div class="mb-3">
+                    <span
+                    class="font-weight-bold mr-2"
+                    >Evaluation</span>
+            
+                    <ng-container *ngIf="totalPoints==0">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </ng-container>
+                    <ng-container *ngIf="totalPoints>0 && totalPoints<201">
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </ng-container>
+                    <ng-container *ngIf="totalPoints>100 && totalPoints<401">
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i  style="color: orange;" class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </ng-container>
+                    <ng-container *ngIf="totalPoints>400 && totalPoints<601">
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i  style="color: orange;" class="fas fa-star"></i>
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </ng-container>
+                    <ng-container *ngIf="totalPoints>600 && totalPoints<801">
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i  style="color: orange;" class="fas fa-star"></i>
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </ng-container>
+                    <ng-container *ngIf="totalPoints>800 ">
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i  style="color: orange;" class="fas fa-star"></i>
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i style="color: orange;" class="fas fa-star"></i>
+                      <i style="color: orange;" class="fas fa-star"></i>
+                    </ng-container>
+                  </div>
+                
+                          </div>
+                            <!-- <div class="row">
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="City" type="text">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Country" type="text">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Postal Code" type="text">
+                                  </mat-form-field>
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <!-- <div class="col-md-12">
+                                  <label>About Me</label>
+                                  <mat-form-field class="example-full-width">
+                                    <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
+                                  </mat-form-field> -->
+                                    <!-- <div class="form-group">
+
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div> -->
+                                <!-- </div> -->
+                            </div>
+                            <button 
+                            [disabled]="updateProfileForm.invalid"
+                            mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div 
+                [ngStyle]="{
+                  background:authService.dark ? '#494949' : 'white',
+                  color:authService.dark ? 'white' : 'black'
+                }"
+                class="card card-profile">
+                    <div class="card-avatar">
+                      <img  
+                      *ngIf="authService.userPrfile.PhotoUrl"
+                      class="img" [src]="authService.userPrfile.PhotoUrl" />
+                            <img  
+                            *ngIf="!authService.userPrfile.PhotoUrl"
+                            class="img" src="./assets/img/faces/user.jpeg" />
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title text-gray">{{authService.userPrfile.Name}}</h4>
+                        <h6 class="card-category text-gray">{{authService.userPrfile.Email}}</h6>
+                        <button class="btn btn-primary" routerLink="/upimg" >Update Picture</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+    </div>
+  </div>
+ 
